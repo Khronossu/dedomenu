@@ -18,7 +18,7 @@ const query = async (prompt: string, id: string, model: string) => {
     return res.choices[0].message.content;
   } catch (err) {
     console.error("Error querying OpenAI API:", err);
-    throw new Error(err?.message || "Failed to query OpenAI API.");
+    // throw new Error(err?.message || "Failed to query OpenAI API.");
   }
 };
 
