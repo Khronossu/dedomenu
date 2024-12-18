@@ -3,7 +3,7 @@ import openai from "./chatgpt";
 const query = async (prompt: string, id: string, model: string) => {
   try {
     const res = await openai.chat.completions.create({
-      model, // Use the specified chat model, e.g., "gpt-3.5-turbo"
+      model,
       messages: [
         { role: "system", content: "You are ChatGPT, a helpful assistant." },
         { role: "user", content: prompt },
@@ -15,10 +15,11 @@ const query = async (prompt: string, id: string, model: string) => {
       presence_penalty: 0,
     });
 
-    return res.choices[0].message.content;
+    // Return the entire response object
+    return res;
   } catch (err) {
     console.error("Error querying OpenAI API:", err);
-    // throw new Error(err?.message || "Failed to query OpenAI API.");
+    throw new Error(err?.message || "Failed to query OpenAI API.");
   }
 };
 
